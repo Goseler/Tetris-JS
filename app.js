@@ -53,8 +53,8 @@ document.addEventListener("DOMContentLoaded", () => {
   let currentRotation = 0;
 
   // Randomly select a Tetromino and its first rotation
-  let  random = Math.floor(Math.random()*theTetrominoes.length)
-  console.log(random)
+  let random = Math.floor(Math.random() * theTetrominoes.length);
+  console.log(random);
   let current = theTetrominoes[random][currentRotation];
 
   // Draw the tetromino
@@ -70,5 +70,12 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  draw();
+  // Make the tetromino move down every second
+  timerId = setInterval(moveDown, 1000);
+
+  function moveDown() {
+    undraw();
+    currentPosition += width;
+    draw();
+  }
 });
