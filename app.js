@@ -3,6 +3,7 @@ document.addEventListener("DOMContentLoaded", () => {
   let squares = Array.from(document.querySelectorAll(".grid div"));
   const scoreDisplay = document.querySelector("#score");
   const startBtn = document.querySelector("#start-button");
+  const resetBtn = document.querySelector("#reset-button");
   const width = 10;
   let timerId = null;
   let score = 0;
@@ -186,16 +187,20 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Display the shape in the mini-grid display
   function displayShape() {
-    // Remove any trace of a tetromino form the entire grid
-    displaySquares.forEach((square) => {
-      square.classList.remove("tetromino");
-    });
+    displayShapeClear();
     upNextTetrominoes[nextRandom].forEach((index) => {
       displaySquares[displayIndex + index].classList.add("tetromino");
     });
   }
 
-  // Add functionality to the button
+  function displayShapeClear() {
+    // Remove any trace of a tetromino form the entire grid
+    displaySquares.forEach((square) => {
+      square.classList.remove("tetromino");
+    });
+  }
+
+  // Add functionality to the button Start/Pause
   function btnClick() {
     if (timerId) {
       clearInterval(timerId);
@@ -206,8 +211,50 @@ document.addEventListener("DOMContentLoaded", () => {
       displayShape();
     }
   }
-
   startBtn.addEventListener("click", btnClick);
+
+  // Add function to reset grid
+  function clearGrid() {
+    for (let i = 0; i < 199; i += width) {
+      const row = [
+        i,
+        i + 1,
+        i + 2,
+        i + 3,
+        i + 4,
+        i + 5,
+        i + 6,
+        i + 7,
+        i + 8,
+        i + 9,
+      ];
+
+      row.forEach((index) => {
+        squares[index].classList.remove("taken");
+        squares[index].classList.remove("tetromino");
+      });
+      squares.forEach((cell) => grid.appendChild(cell));
+    }
+  }
+
+  // Add functionality to the button Reset
+  function resetBtnClick() {
+    startBtn.disabled = false;
+
+    if (timerId) {
+      clearInterval(timerId);
+      timerId = null;
+    }
+
+    score = 0;
+    scoreDisplay.innerHTML = score;
+
+    nextRandom = Math.floor(Math.random() * theTetrominoes.length);
+
+    displayShapeClear();
+    clearGrid();
+  }
+  resetBtn.addEventListener("click", resetBtnClick);
 
   // Add score
   function addScore() {
@@ -250,7 +297,7 @@ document.addEventListener("DOMContentLoaded", () => {
       scoreDisplay.innerHTML = "end";
       clearInterval(timerId);
       document.removeEventListener("keyup", control);
-      startBtn.removeEventListener("click", btnClick);
+      startBtn.disabled = true;
     }
   }
 });
