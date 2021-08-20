@@ -88,7 +88,7 @@ document.addEventListener("DOMContentLoaded", () => {
       moveDown();
     }
   }
-  document.addEventListener("keyup", control);
+  
 
   function moveDown() {
     undraw();
@@ -210,10 +210,12 @@ document.addEventListener("DOMContentLoaded", () => {
     if (timerId) {
       clearInterval(timerId);
       timerId = null;
+      document.removeEventListener("keyup", control);
     } else {
       draw();
       timerId = setInterval(moveDown, 1000);
       displayShape();
+      document.addEventListener("keyup", control);
     }
   }
   startBtn.addEventListener("click", btnClick);
