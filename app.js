@@ -51,7 +51,7 @@ document.addEventListener("DOMContentLoaded", () => {
     iTetromino,
   ];
 
-  let nextRandom =  Math.floor(Math.random() * theTetrominoes.length);
+  let nextRandom = Math.floor(Math.random() * theTetrominoes.length);
 
   let currentPosition = 4;
   let currentRotation = 0;
@@ -196,7 +196,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // Add functionality to the button
-  startBtn.addEventListener("click", () => {
+  function btnClick() {
     if (timerId) {
       clearInterval(timerId);
       timerId = null;
@@ -205,7 +205,9 @@ document.addEventListener("DOMContentLoaded", () => {
       timerId = setInterval(moveDown, 1000);
       displayShape();
     }
-  });
+  }
+
+  startBtn.addEventListener("click", btnClick);
 
   // Add score
   function addScore() {
@@ -233,7 +235,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const squaresRemoved = squares.splice(i, width);
         squares = squaresRemoved.concat(squares);
         squares.forEach((cell) => grid.appendChild(cell));
-        draw()
+        draw();
       }
     }
   }
@@ -247,6 +249,8 @@ document.addEventListener("DOMContentLoaded", () => {
     ) {
       scoreDisplay.innerHTML = "end";
       clearInterval(timerId);
+      document.removeEventListener("keyup", control);
+      startBtn.removeEventListener("click", btnClick);
     }
   }
 });
