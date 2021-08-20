@@ -53,12 +53,11 @@ document.addEventListener("DOMContentLoaded", () => {
     iTetromino,
   ];
 
-  let nextRandom = Math.floor(Math.random() * theTetrominoes.length);
-
   let currentPosition = 4;
   let currentRotation = 0;
 
   // Randomly select a Tetromino and its first rotation
+  let nextRandom = Math.floor(Math.random() * theTetrominoes.length);
   let random = Math.floor(Math.random() * theTetrominoes.length);
   let current = theTetrominoes[random][currentRotation];
 
@@ -182,7 +181,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // The Tetrominos without rotations
   const upNextTetrominoes = [
     [1, displayWidth + 1, displayWidth * 2 + 1, 2], // lTetromino
-    [0, displayWidth, displayWidth + 1, displayWidth * 2 + 1], // zTetromino
+    [displayWidth * 2, displayWidth * 2 + 1, displayWidth + 1, displayWidth + 2], // zTetromino
     [1, displayWidth, displayWidth + 1, displayWidth + 2], // tTetromino
     [0, 1, displayWidth, displayWidth + 1], // oTetromino
     [1, displayWidth + 1, displayWidth * 2 + 1, displayWidth * 3 + 1], // iTetromino
@@ -246,9 +245,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Add functionality to the button Reset
   function resetBtnClick() {
-    startBtn.disabled = false;
-    document.addEventListener("keyup", control);
-
     if (timerId) {
       clearInterval(timerId);
       timerId = null;
@@ -258,9 +254,17 @@ document.addEventListener("DOMContentLoaded", () => {
     scoreDisplay.innerHTML = score;
 
     nextRandom = Math.floor(Math.random() * theTetrominoes.length);
+    random = Math.floor(Math.random() * theTetrominoes.length);
+    current = theTetrominoes[random][currentRotation];
+
+    currentPosition = 4;
+    currentRotation = 0;
 
     displayShapeClear();
     clearGrid();
+
+    startBtn.disabled = false;
+    document.addEventListener("keyup", control);
   }
   resetBtn.addEventListener("click", resetBtnClick);
 
@@ -291,9 +295,9 @@ document.addEventListener("DOMContentLoaded", () => {
         const squaresRemoved = squares.splice(i, width);
         squares = squaresRemoved.concat(squares);
         squares.forEach((cell) => grid.appendChild(cell));
-        draw();
       }
     }
+    draw();
   }
 
   // Game over
