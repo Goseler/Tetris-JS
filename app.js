@@ -4,7 +4,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const scoreDisplay = document.querySelector("#score");
   const startBtn = document.querySelector("#start-button");
   const width = 10;
-  let nextRandom = 0;
   let timerId = null;
   let score = 0;
 
@@ -51,6 +50,8 @@ document.addEventListener("DOMContentLoaded", () => {
     oTetromino,
     iTetromino,
   ];
+
+  let nextRandom =  Math.floor(Math.random() * theTetrominoes.length);
 
   let currentPosition = 4;
   let currentRotation = 0;
@@ -105,15 +106,14 @@ document.addEventListener("DOMContentLoaded", () => {
       );
 
       // Start a new tetromino falling
+      currentPosition = 4;
+      currentRotation = 0;
       random = nextRandom;
       nextRandom = Math.floor(Math.random() * theTetrominoes.length);
       current = theTetrominoes[random][currentRotation];
-      currentPosition = 4;
-      draw();
       displayShape();
       addScore();
       gameOver();
-      undraw();
     }
   }
 
@@ -203,7 +203,6 @@ document.addEventListener("DOMContentLoaded", () => {
     } else {
       draw();
       timerId = setInterval(moveDown, 1000);
-      nextRandom = Math.floor(Math.random() * theTetrominoes.length);
       displayShape();
     }
   });
@@ -234,6 +233,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const squaresRemoved = squares.splice(i, width);
         squares = squaresRemoved.concat(squares);
         squares.forEach((cell) => grid.appendChild(cell));
+        draw()
       }
     }
   }
