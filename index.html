@@ -9,6 +9,17 @@
     <link rel="stylesheet" href="./style.css" />
   </head>
   <body>
+    <audio id="player" loop autoplay controls hidden>
+      <source src="./audio/bg-music-01.mp3" type="audio/mp3" />
+    </audio>
+    <script>
+      document.addEventListener("click", musicPlay);
+      function musicPlay() {
+        document.getElementById("player").play();
+        document.removeEventListener("click", musicPlay);
+      }
+    </script>
+
     <h3>Score <span id="score">0</span></h3>
     <button id="start-button">Start/Pause</button>
     <button id="reset-button">Reset</button>

@@ -92,7 +92,7 @@ document.addEventListener("DOMContentLoaded", () => {
       moveRight();
     } else if (e.keyCode === 40) {
       moveDown();
-    } else if (e.keyCode === 32){
+    } else if (e.keyCode === 32) {
       StartPauseBtnClick();
     }
   }
