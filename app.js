@@ -90,8 +90,10 @@ document.addEventListener("DOMContentLoaded", () => {
       rotate();
     } else if (e.keyCode === 39) {
       moveRight();
-    } else if (e.keyCode == 40) {
+    } else if (e.keyCode === 40) {
       moveDown();
+    } else if (e.keyCode === 32){
+      StartPauseBtnClick();
     }
   }
 
@@ -372,13 +374,13 @@ document.addEventListener("DOMContentLoaded", () => {
   var modal = document.getElementById("myModal");
 
   // Get the button that opens the modal
-  var btn = document.getElementById("myBtn");
+  var btnRules = document.getElementById("myBtn");
 
   // Get the <span> element that closes the modal
   var span = document.getElementsByClassName("close")[0];
 
   // When the user clicks on the button, open the modal
-  btn.onclick = function () {
+  btnRules.onclick = function () {
     modal.style.display = "block";
     if (timerId) {
       clearInterval(timerId);
@@ -398,4 +400,6 @@ document.addEventListener("DOMContentLoaded", () => {
       modal.style.display = "none";
     }
   };
+
+  btnRules.onclick();
 });
