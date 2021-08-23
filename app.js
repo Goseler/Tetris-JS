@@ -256,7 +256,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // Add functionality to the button Start/Pause
-  function btnClick() {
+  function StartPauseBtnClick() {
     if (timerId) {
       clearInterval(timerId);
       timerId = null;
@@ -268,7 +268,7 @@ document.addEventListener("DOMContentLoaded", () => {
       document.addEventListener("keyup", control);
     }
   }
-  startBtn.addEventListener("click", btnClick);
+  startBtn.addEventListener("click", StartPauseBtnClick);
 
   // Add function to reset grid
   function clearGrid() {
@@ -380,6 +380,11 @@ document.addEventListener("DOMContentLoaded", () => {
   // When the user clicks on the button, open the modal
   btn.onclick = function () {
     modal.style.display = "block";
+    if (timerId) {
+      clearInterval(timerId);
+      timerId = null;
+      document.removeEventListener("keyup", control);
+    }
   };
 
   // When the user clicks on <span> (x), close the modal
