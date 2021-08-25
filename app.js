@@ -369,6 +369,10 @@ document.addEventListener("DOMContentLoaded", () => {
     draw();
   }
 
+  if (localStorage.getItem("bestScore") === null) {
+    localStorage.setItem("bestScore", 0);
+  }
+
   // Game over
   function gameOver() {
     if (
@@ -376,7 +380,15 @@ document.addEventListener("DOMContentLoaded", () => {
         squares[currentPosition + index].classList.contains("taken")
       )
     ) {
-      scoreDisplay.innerHTML = "end";
+      let bestScore = localStorage.getItem("bestScore");
+      if (bestScore < score) {
+        alert("Congratulations! New best: " + score + "pts.");
+        localStorage.setItem("bestScore", score);
+      } else {
+        alert("Game over! Your score: " + score + "pts.");
+      }
+      score = 0;
+
       clearInterval(timerId);
       document.removeEventListener("keyup", control);
       startBtn.disabled = true;
@@ -431,12 +443,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
   muteBtn.onclick = function () {
     if (muteBtn.innerHTML === "🔇") {
-      // muteBtn.innerHTML = "&#128266";
-      muteBtn.innerHTML = "🔊";
+      muteBtn.innerHTML = "&#128266";
       player.muted = false;
     } else {
-      // muteBtn.innerHTML = "&#128263;"
-      muteBtn.innerHTML = "🔇";
+      muteBtn.innerHTML = "&#128263;";
       player.muted = true;
     }
   };
