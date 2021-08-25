@@ -13,16 +13,33 @@
       crossorigin="anonymous"
     />
     <link rel="stylesheet" href="./style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Amaranth&family=Cambay&family=GFS+Neohellenic&family=Kalam:wght@700&family=Rampart+One&family=Roboto&display=swap"
+      rel="stylesheet"
+    />
   </head>
   <body>
     <audio id="player" loop autoplay controls hidden>
       <source src="./audio/bg-music-01.mp3" type="audio/mp3" />
     </audio>
     <div class="container">
-      <div class="row"></div>
       <div class="row justify-content-center">
-        <div class="col-8">
-          <h3>Score <span id="score">0</span></h3>
+        <div class="col">
+          <h1 id="mainHeader">
+            <span id="t1">T</span>
+            <span id="e2">E</span>
+            <span id="t3">T</span>
+            <span id="r4">R</span>
+            <span id="i5">I</span>
+            <span id="s6">S</span>
+          </h1>
+        </div>
+      </div>
+      <div class="row justify-content-center">
+        <div class="col">
+          <h3 id="hScore">Score <span id="score">0</span></h3>
         </div>
       </div>
       <div class="row justify-content-center">
