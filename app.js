@@ -382,10 +382,10 @@ document.addEventListener("DOMContentLoaded", () => {
     ) {
       let bestScore = localStorage.getItem("bestScore");
       if (bestScore < score) {
-        alert("Congratulations! New best: " + score + "pts.");
+        alert("Congratulations! New best: " + score + " pts.");
         localStorage.setItem("bestScore", score);
       } else {
-        alert("Game over! Your score: " + score + "pts.");
+        alert("Game over! Your score: " + score + " pts.");
       }
       score = 0;
 
