@@ -320,6 +320,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
     startBtn.disabled = false;
     document.addEventListener("keyup", control);
+
+    document.getElementById("player").pause();
   }
   resetBtn.addEventListener("click", resetBtnClick);
 
@@ -367,6 +369,8 @@ document.addEventListener("DOMContentLoaded", () => {
       clearInterval(timerId);
       document.removeEventListener("keyup", control);
       startBtn.disabled = true;
+
+      document.getElementById("player").pause();
     }
   }
 
@@ -387,6 +391,7 @@ document.addEventListener("DOMContentLoaded", () => {
       timerId = null;
       document.removeEventListener("keyup", control);
     }
+    document.getElementById("player").pause();
   };
 
   // When the user clicks on <span> (x), close the modal
@@ -402,4 +407,14 @@ document.addEventListener("DOMContentLoaded", () => {
   };
 
   btnRules.onclick();
+
+  // Play music on play/pause
+  startBtn.addEventListener("click", musicPlay);
+  function musicPlay() {
+    if (document.getElementById("player").paused === true) {
+      document.getElementById("player").play();
+    } else {
+      document.getElementById("player").pause();
+    }
+  }
 });
