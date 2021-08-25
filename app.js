@@ -4,6 +4,8 @@ document.addEventListener("DOMContentLoaded", () => {
   const scoreDisplay = document.querySelector("#score");
   const startBtn = document.querySelector("#start-button");
   const resetBtn = document.querySelector("#reset-button");
+  const muteBtn = document.querySelector(".mute");
+  const player = document.getElementById("player");
   const width = 10;
   let timerId = null;
   let score = 0;
@@ -411,10 +413,22 @@ document.addEventListener("DOMContentLoaded", () => {
   // Play music on play/pause
   startBtn.addEventListener("click", musicPlay);
   function musicPlay() {
-    if (document.getElementById("player").paused === true) {
-      document.getElementById("player").play();
+    if (player.paused === true) {
+      player.play();
     } else {
-      document.getElementById("player").pause();
+      player.pause();
     }
   }
+
+  muteBtn.onclick = function () {
+    if (muteBtn.innerHTML === "🔇") {
+      // muteBtn.innerHTML = "&#128266";
+      muteBtn.innerHTML = "🔊";
+      player.muted = false;
+    } else {
+      // muteBtn.innerHTML = "&#128263;"
+      muteBtn.innerHTML = "🔇";
+      player.muted = true;
+    }
+  };
 });

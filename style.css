@@ -79,3 +79,12 @@
   margin: auto;
   text-align: left;
 }
+
+.mute {
+  font-size: 20px;
+}
+
+.mute:hover, .mute:hover{
+  cursor: pointer;
+  text-decoration: none;
+}
