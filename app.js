@@ -329,6 +329,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Add score
   function addScore() {
+    let lines = 0;
     for (let i = 0; i < 199; i += width) {
       const row = [
         i,
@@ -344,19 +345,27 @@ document.addEventListener("DOMContentLoaded", () => {
       ];
 
       if (row.every((index) => squares[index].classList.contains("taken"))) {
-        score += 10;
-        scoreDisplay.innerHTML = score;
         row.forEach((index) => {
           squares[index].classList.remove("taken");
           squares[index].classList.remove("tetromino");
           squares[index].style.backgroundColor = "";
           squares[index].style.backgroundImage = "none";
         });
+
         const squaresRemoved = squares.splice(i, width);
         squares = squaresRemoved.concat(squares);
         squares.forEach((cell) => grid.appendChild(cell));
+
+        lines++;
       }
     }
+
+    score += lines * 100;
+    if (lines === 4) {
+      score += 400;
+    }
+    scoreDisplay.innerHTML = score;
+
     draw();
   }
 
