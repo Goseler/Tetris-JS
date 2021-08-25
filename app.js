@@ -1,9 +1,9 @@
 document.addEventListener("DOMContentLoaded", () => {
   // Grid size
-  const GRID_WIDTH = 10
-  const GRID_HEIGHT = 20
-  const GRID_SIZE = GRID_WIDTH * GRID_HEIGHT
-  
+  const GRID_WIDTH = 10;
+  const GRID_HEIGHT = 20;
+  const GRID_SIZE = GRID_WIDTH * GRID_HEIGHT;
+
   // Auto-create grid
   const grid = createGrid();
   let squares = Array.from(document.querySelectorAll(".grid div"));
@@ -24,38 +24,38 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // The Tetrominoes
   const lTetromino = [
-    [1,GRID_WIDTH + 1,GRID_WIDTH * 2 + 1, 2],
-    [GRID_WIDTH,GRID_WIDTH + 1,GRID_WIDTH + 2,GRID_WIDTH * 2 + 2],
-    [1,GRID_WIDTH + 1,GRID_WIDTH * 2 + 1,GRID_WIDTH * 2],
-    [GRID_WIDTH,GRID_WIDTH * 2,GRID_WIDTH * 2 + 1,GRID_WIDTH * 2 + 2],
+    [1, GRID_WIDTH + 1, GRID_WIDTH * 2 + 1, 2],
+    [GRID_WIDTH, GRID_WIDTH + 1, GRID_WIDTH + 2, GRID_WIDTH * 2 + 2],
+    [1, GRID_WIDTH + 1, GRID_WIDTH * 2 + 1, GRID_WIDTH * 2],
+    [GRID_WIDTH, GRID_WIDTH * 2, GRID_WIDTH * 2 + 1, GRID_WIDTH * 2 + 2],
   ];
 
   const zTetromino = [
-    [GRID_WIDTH * 2,GRID_WIDTH * 2 + 1,GRID_WIDTH + 1,GRID_WIDTH + 2],
-    [0,GRID_WIDTH,GRID_WIDTH + 1,GRID_WIDTH * 2 + 1],
-    [GRID_WIDTH * 2,GRID_WIDTH * 2 + 1,GRID_WIDTH + 1,GRID_WIDTH + 2],
-    [0,GRID_WIDTH,GRID_WIDTH + 1,GRID_WIDTH * 2 + 1],
+    [GRID_WIDTH * 2, GRID_WIDTH * 2 + 1, GRID_WIDTH + 1, GRID_WIDTH + 2],
+    [0, GRID_WIDTH, GRID_WIDTH + 1, GRID_WIDTH * 2 + 1],
+    [GRID_WIDTH * 2, GRID_WIDTH * 2 + 1, GRID_WIDTH + 1, GRID_WIDTH + 2],
+    [0, GRID_WIDTH, GRID_WIDTH + 1, GRID_WIDTH * 2 + 1],
   ];
 
   const tTetromino = [
-    [GRID_WIDTH, 1,GRID_WIDTH + 1,GRID_WIDTH + 2],
-    [1,GRID_WIDTH + 1,GRID_WIDTH * 2 + 1,GRID_WIDTH + 2],
-    [GRID_WIDTH,GRID_WIDTH + 1,GRID_WIDTH * 2 + 1,GRID_WIDTH + 2],
-    [GRID_WIDTH, 1,GRID_WIDTH + 1,GRID_WIDTH * 2 + 1],
+    [GRID_WIDTH, 1, GRID_WIDTH + 1, GRID_WIDTH + 2],
+    [1, GRID_WIDTH + 1, GRID_WIDTH * 2 + 1, GRID_WIDTH + 2],
+    [GRID_WIDTH, GRID_WIDTH + 1, GRID_WIDTH * 2 + 1, GRID_WIDTH + 2],
+    [GRID_WIDTH, 1, GRID_WIDTH + 1, GRID_WIDTH * 2 + 1],
   ];
 
   const oTetromino = [
-    [0, 1,GRID_WIDTH,GRID_WIDTH + 1],
-    [0, 1,GRID_WIDTH,GRID_WIDTH + 1],
-    [0, 1,GRID_WIDTH,GRID_WIDTH + 1],
-    [0, 1,GRID_WIDTH,GRID_WIDTH + 1],
+    [0, 1, GRID_WIDTH, GRID_WIDTH + 1],
+    [0, 1, GRID_WIDTH, GRID_WIDTH + 1],
+    [0, 1, GRID_WIDTH, GRID_WIDTH + 1],
+    [0, 1, GRID_WIDTH, GRID_WIDTH + 1],
   ];
 
   const iTetromino = [
-    [1,GRID_WIDTH + 1,GRID_WIDTH * 2 + 1,GRID_WIDTH * 3 + 1],
-    [GRID_WIDTH,GRID_WIDTH + 1,GRID_WIDTH + 2,GRID_WIDTH + 3],
-    [1,GRID_WIDTH + 1,GRID_WIDTH * 2 + 1,GRID_WIDTH * 3 + 1],
-    [GRID_WIDTH,GRID_WIDTH + 1,GRID_WIDTH + 2,GRID_WIDTH + 3],
+    [1, GRID_WIDTH + 1, GRID_WIDTH * 2 + 1, GRID_WIDTH * 3 + 1],
+    [GRID_WIDTH, GRID_WIDTH + 1, GRID_WIDTH + 2, GRID_WIDTH + 3],
+    [1, GRID_WIDTH + 1, GRID_WIDTH * 2 + 1, GRID_WIDTH * 3 + 1],
+    [GRID_WIDTH, GRID_WIDTH + 1, GRID_WIDTH + 2, GRID_WIDTH + 3],
   ];
 
   const theTetrominoes = [
@@ -67,26 +67,25 @@ document.addEventListener("DOMContentLoaded", () => {
   ];
 
   function createGrid() {
-
     // Main grid
     let grid = document.querySelector(".grid");
     for (let i = 0; i < GRID_SIZE; i++) {
       let gridElement = document.createElement("div");
-      grid.appendChild(gridElement)
+      grid.appendChild(gridElement);
     }
 
     // Base of grid
     for (let i = 0; i < GRID_WIDTH; i++) {
       let gridElement = document.createElement("div");
       gridElement.setAttribute("class", "taken");
-      grid.appendChild(gridElement);    
+      grid.appendChild(gridElement);
     }
 
     // Display grid
     let miniGrid = document.querySelector(".mini-grid");
     for (let i = 0; i < 16; i++) {
-         let gridElement = document.createElement("div");
-         miniGrid.appendChild(gridElement);
+      let gridElement = document.createElement("div");
+      miniGrid.appendChild(gridElement);
     }
 
     return grid;
@@ -132,7 +131,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function moveDown() {
     undraw();
-    currentPosition +=GRID_WIDTH;
+    currentPosition += GRID_WIDTH;
     draw();
     freeze();
   }
@@ -141,7 +140,9 @@ document.addEventListener("DOMContentLoaded", () => {
   function freeze() {
     if (
       current.some((index) =>
-        squares[currentPosition + index +GRID_WIDTH].classList.contains("taken")
+        squares[currentPosition + index + GRID_WIDTH].classList.contains(
+          "taken"
+        )
       )
     ) {
       current.forEach((index) =>
@@ -164,7 +165,7 @@ document.addEventListener("DOMContentLoaded", () => {
   function moveLeft() {
     undraw();
     const isAtLeftEdge = current.some(
-      (index) => (currentPosition + index) %GRID_WIDTH === 0
+      (index) => (currentPosition + index) % GRID_WIDTH === 0
     );
 
     if (!isAtLeftEdge) currentPosition -= 1;
@@ -184,7 +185,7 @@ document.addEventListener("DOMContentLoaded", () => {
   function moveRight() {
     undraw();
     const isAtRightEdge = current.some(
-      (index) => (currentPosition + index) %GRID_WIDTH ===GRID_WIDTH - 1
+      (index) => (currentPosition + index) % GRID_WIDTH === GRID_WIDTH - 1
     );
 
     if (!isAtRightEdge) currentPosition += 1;
@@ -202,23 +203,27 @@ document.addEventListener("DOMContentLoaded", () => {
 
   ///FIX ROTATION OF TETROMINOS A THE EDGE
   function isAtRight() {
-    return current.some((index) => (currentPosition + index + 1) %GRID_WIDTH === 0);
+    return current.some(
+      (index) => (currentPosition + index + 1) % GRID_WIDTH === 0
+    );
   }
 
   function isAtLeft() {
-    return current.some((index) => (currentPosition + index) %GRID_WIDTH === 0);
+    return current.some(
+      (index) => (currentPosition + index) % GRID_WIDTH === 0
+    );
   }
 
   function checkRotatedPosition(P) {
     P = P || currentPosition; //get current position.  Then, check if the piece is near the left side.
-    if ((P + 1) %GRID_WIDTH < 4) {
+    if ((P + 1) % GRID_WIDTH < 4) {
       //add 1 because the position index can be 1 less than where the piece is (with how they are indexed).
       if (isAtRight()) {
         //use actual position to check if it's flipped over to right side
         currentPosition += 1; //if so, add one to wrap it back around
         checkRotatedPosition(P); //check again.  Pass position from start, since long block might need to move more.
       }
-    } else if (P %GRID_WIDTH > 5) {
+    } else if (P % GRID_WIDTH > 5) {
       if (isAtLeft()) {
         currentPosition -= 1;
         checkRotatedPosition(P);
@@ -307,7 +312,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Add function to reset grid
   function clearGrid() {
-    for (let i = 0; i < 199; i +=GRID_WIDTH) {
+    for (let i = 0; i < 199; i += GRID_WIDTH) {
       const row = [
         i,
         i + 1,
@@ -361,7 +366,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // Add score
   function addScore() {
     let lines = 0;
-    for (let i = 0; i < 199; i +=GRID_WIDTH) {
+    for (let i = 0; i < 199; i += GRID_WIDTH) {
       const row = [
         i,
         i + 1,
@@ -383,7 +388,7 @@ document.addEventListener("DOMContentLoaded", () => {
           squares[index].style.backgroundImage = "none";
         });
 
-        const squaresRemoved = squares.splice(i,GRID_WIDTH);
+        const squaresRemoved = squares.splice(i, GRID_WIDTH);
         squares = squaresRemoved.concat(squares);
         squares.forEach((cell) => grid.appendChild(cell));
 

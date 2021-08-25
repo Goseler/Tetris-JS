@@ -1,6 +1,8 @@
-body{
+body {
   margin: 0;
   overflow-y: hidden;
+  background: url(./images/bg-body.png) repeat;
+  background-size: 150px;
 }
 
 .container {
