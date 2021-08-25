@@ -5,8 +5,25 @@ body {
   background-size: 150px;
 }
 
-.container {
+/* .container {
   display: flex;
+} */
+
+.row div{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+#controls{
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-end;
+}
+#mini-grid{
+  display: flex;
+  justify-content: flex-start;
 }
 
 .grid {
@@ -27,7 +44,7 @@ body {
 } */
 
 .mini-grid {
-  margin-left: 50px;
+  /* margin-left: 50px; */
   width: 80px;
   height: 80px;
   display: flex;

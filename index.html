@@ -18,25 +18,37 @@
     <audio id="player" loop autoplay controls hidden>
       <source src="./audio/bg-music-01.mp3" type="audio/mp3" />
     </audio>
-
-    <h3>Score <span id="score">0</span></h3>
-    <button id="start-button" class="btn btn-primary">Start/Pause</button>
-    <button id="reset-button">Reset</button>
-    <button
-      type="button"
-      data-bs-toggle="modal"
-      data-bs-target="#myModal"
-      class="btn btn-outline-light"
-    >
-      &#8505;
-    </button>
-
-    <span class="mute">&#128266;</span>
-
     <div class="container">
-      <div class="grid"></div>
+      <div class="row"></div>
+      <div class="row justify-content-center">
+        <div class="col-8">
+          <h3>Score <span id="score">0</span></h3>
+        </div>
+      </div>
+      <div class="row justify-content-center">
+        <div class="col" id="controls">
+          <button id="start-button" class="btn btn-primary">Start/Pause</button>
+          <button id="reset-button">Reset</button>
+          <button
+            type="button"
+            data-bs-toggle="modal"
+            data-bs-target="#myModal"
+            class="btn btn-outline-light"
+          >
+            &#8505;
+          </button>
+          <span class="mute">&#128266;</span>
+        </div>
 
-      <div class="mini-grid"></div>
+        <div class="col" id="grid">
+          <div class="grid"></div>
+        </div>
+
+        <div class="col" id="mini-grid">
+          <div class="mini-grid"></div>
+        </div>
+      </div>
+      <div class="row"></div>
     </div>
 
     <div class="modal" tabindex="-1" id="myModal">
