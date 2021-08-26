@@ -1,9 +1,17 @@
-body {
+html, body{
+  min-height: 100%;
+  padding: 0;
   margin: 0;
-  overflow-y: hidden;
-  background: url(./images/bg-body.png) repeat;
+}
+
+body {
+  min-height: 100%;
+  background: linear-gradient(to bottom, transparent,#3e379b75), url(./images/bg-body.png) repeat;
   background-size: 150px;
-  font-family: "Kalam", cursive;
+  font-family: 'Exo 2', sans-serif;
+  font-weight: 500;
+  /* background: -webkit-linear-gradient(to bottom, #355c7d, #6c5b7b, #c06c84);
+  background: linear-gradient(to bottom, #355c7d, #6c5b7b, #c06c84); */
 }
 
 /* .container {
@@ -48,9 +56,9 @@ body {
   -webkit-text-fill-color: transparent;
   display: table;
   font-size: 56px;
-  font-weight: bold;
-  letter-spacing: 20px;
-  padding: 20px 0 0 0;
+  font-weight: 900;
+  letter-spacing: 15px;
+  padding: 20px 0 20px 0;
 }
 
 .grid {
