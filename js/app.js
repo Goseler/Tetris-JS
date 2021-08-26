@@ -301,13 +301,15 @@ document.addEventListener("DOMContentLoaded", () => {
       clearInterval(timerId);
       timerId = null;
       document.removeEventListener("keyup", control);
-      startBtn.innerHTML = '<img src="./images/controls/play.png" alt="play/pause">';
+      startBtn.innerHTML =
+        '<img src="./images/controls/play.png" alt="play/pause">';
     } else {
       draw();
       timerId = setInterval(moveDown, 1000);
       displayShape();
       document.addEventListener("keyup", control);
-      startBtn.innerHTML = '<img src="./images/controls/pause.png" alt="play/pause">';
+      startBtn.innerHTML =
+        '<img src="./images/controls/pause.png" alt="play/pause">';
     }
   }
   startBtn.addEventListener("click", StartPauseBtnClick);
@@ -344,7 +346,8 @@ document.addEventListener("DOMContentLoaded", () => {
       clearInterval(timerId);
       timerId = null;
     }
-    startBtn.innerHTML = '<img src="./images/controls/play.png" alt="play/pause">';
+    startBtn.innerHTML =
+      '<img src="./images/controls/play.png" alt="play/pause">';
 
     score = 0;
     scoreDisplay.innerHTML = score;
@@ -462,13 +465,39 @@ document.addEventListener("DOMContentLoaded", () => {
 
   muteBtn.onclick = function () {
     if (
-      muteBtn.innerHTML === '<img src="./images/controls/mute.png" alt="volume/mute">'
+      muteBtn.innerHTML ===
+      '<img src="./images/controls/mute.png" alt="volume/mute">'
     ) {
-      muteBtn.innerHTML = '<img src="./images/controls/volume.png" alt="volume/mute">';
+      muteBtn.innerHTML =
+        '<img src="./images/controls/volume.png" alt="volume/mute">';
       player.muted = false;
     } else {
-      muteBtn.innerHTML = '<img src="./images/controls/mute.png" alt="volume/mute">';
+      muteBtn.innerHTML =
+        '<img src="./images/controls/mute.png" alt="volume/mute">';
       player.muted = true;
     }
   };
+
+  const slowBtn = document.querySelector("#slow");
+  const defaultBtn = document.querySelector("#default");
+  const fastBtn = document.querySelector("#faster");
+
+  function slowerSpeed() {
+    clearInterval(timerId);
+    timerId = setInterval(moveDown, 2000);
+  }
+
+  function defaultSpeed() {
+    clearInterval(timerId);
+    timerId = setInterval(moveDown, 1000);
+  }
+
+  function fasterSpeed() {
+    clearInterval(timerId);
+    timerId = setInterval(moveDown, 500);
+  }
+
+  slowBtn.addEventListener("click", slowerSpeed);
+  defaultBtn.addEventListener("click", defaultSpeed);
+  fastBtn.addEventListener("click", fasterSpeed);
 });
