@@ -441,14 +441,14 @@ document.addEventListener("DOMContentLoaded", () => {
   });
   myModal.show();
 
-  document.querySelector(".myModalBtn").addEventListener("click", modalClick);
   function modalClick() {
     if (timerId) {
       StartPauseBtnClick();
       musicPlay();
-      myModal.show();
     }
+    myModal.show();
   }
+  document.querySelector(".myModalBtn").addEventListener("click", modalClick);
 
   // Play music on play/pause
   startBtn.addEventListener("click", musicPlay);
