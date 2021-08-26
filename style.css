@@ -13,32 +13,6 @@ body {
   font-weight: 500;
 }
 
-.row div {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-}
-
-#hScore {
-  color: #f4f1de;
-  font-size: x-large;
-}
-
-#controls {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  justify-content: flex-start;
-}
-#controls button {
-  margin-bottom: 5px;
-}
-
-#mini-grid {
-  display: flex;
-  justify-content: flex-start;
-}
-
 #mainHeader {
   text-transform: uppercase;
   background: -webkit-linear-gradient(
@@ -61,6 +35,34 @@ body {
   padding: 20px 0 20px 0;
 }
 
+.row div {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+#hScore {
+  color: #f4f1de;
+  font-size: x-large;
+}
+
+#controls {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: flex-start;
+}
+
+#controls button {
+  margin-bottom: 5px;
+}
+
+.mute:hover,
+.mute:hover {
+  cursor: pointer;
+  text-decoration: none;
+}
+
 .grid {
   width: 200px;
   height: 400px;
@@ -72,6 +74,11 @@ body {
 .grid div {
   height: 20px;
   width: 20px;
+}
+
+#mini-grid {
+  display: flex;
+  justify-content: flex-start;
 }
 
 .mini-grid {
@@ -101,12 +108,7 @@ body {
   text-align: left;
 }
 
-.mute:hover,
-.mute:hover {
-  cursor: pointer;
-  text-decoration: none;
-}
-
+/* Bootstrap styles change */
 .btn-light {
   background-color: #f2cc8f;
   border-color: #f2cc8f;
@@ -115,4 +117,11 @@ body {
 .btn-light:hover {
   background-color: #f4f1de;
   border-color: #f4f1de;
+}
+
+.btn:focus {
+  outline: none;
+  box-shadow: none;
+  background-color: #f2cc8f;
+  border-color: #f2cc8f;
 }
