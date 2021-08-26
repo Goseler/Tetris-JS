@@ -7,7 +7,7 @@ body {
 
 body {
   background: linear-gradient(to bottom, #3d405b70, #e07a5f70),
-    url(./images/bg-body.png) repeat;
+    url(../images/bg-body.png) repeat;
   background-size: 150px;
   font-family: "Exo 2", sans-serif;
   font-weight: 500;

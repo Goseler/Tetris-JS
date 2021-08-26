@@ -15,11 +15,11 @@ document.addEventListener("DOMContentLoaded", () => {
   let timerId = null;
   let score = 0;
   const colors = [
-    "url(./images/block-orange.png)",
-    "url(./images/block-red.png)",
-    "url(./images/block-purple.png)",
-    "url(./images/block-green.png)",
-    "url(./images/block-blue.png)",
+    "url(./images/game/tetrominoes/block-orange.png)",
+    "url(./images/game/tetrominoes/block-red.png)",
+    "url(./images/game/tetrominoes/block-purple.png)",
+    "url(./images/game/tetrominoes/block-green.png)",
+    "url(./images/game/tetrominoes/block-blue.png)",
   ];
 
   // The Tetrominoes
@@ -301,13 +301,13 @@ document.addEventListener("DOMContentLoaded", () => {
       clearInterval(timerId);
       timerId = null;
       document.removeEventListener("keyup", control);
-      startBtn.innerHTML = '<img src="./images/play.png" alt="play/pause">';
+      startBtn.innerHTML = '<img src="./images/controls/play.png" alt="play/pause">';
     } else {
       draw();
       timerId = setInterval(moveDown, 1000);
       displayShape();
       document.addEventListener("keyup", control);
-      startBtn.innerHTML = '<img src="./images/pause.png" alt="play/pause">';
+      startBtn.innerHTML = '<img src="./images/controls/pause.png" alt="play/pause">';
     }
   }
   startBtn.addEventListener("click", StartPauseBtnClick);
@@ -344,7 +344,7 @@ document.addEventListener("DOMContentLoaded", () => {
       clearInterval(timerId);
       timerId = null;
     }
-    startBtn.innerHTML = '<img src="./images/play.png" alt="play/pause">';
+    startBtn.innerHTML = '<img src="./images/controls/play.png" alt="play/pause">';
 
     score = 0;
     scoreDisplay.innerHTML = score;
@@ -462,12 +462,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
   muteBtn.onclick = function () {
     if (
-      muteBtn.innerHTML === '<img src="./images/mute.png" alt="volume/mute">'
+      muteBtn.innerHTML === '<img src="./images/controls/mute.png" alt="volume/mute">'
     ) {
-      muteBtn.innerHTML = '<img src="./images/volume.png" alt="volume/mute">';
+      muteBtn.innerHTML = '<img src="./images/controls/volume.png" alt="volume/mute">';
       player.muted = false;
     } else {
-      muteBtn.innerHTML = '<img src="./images/mute.png" alt="volume/mute">';
+      muteBtn.innerHTML = '<img src="./images/controls/mute.png" alt="volume/mute">';
       player.muted = true;
     }
   };
