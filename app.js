@@ -301,11 +301,13 @@ document.addEventListener("DOMContentLoaded", () => {
       clearInterval(timerId);
       timerId = null;
       document.removeEventListener("keyup", control);
+      startBtn.innerHTML = '<img src="./images/play.png" alt="play/pause">';
     } else {
       draw();
       timerId = setInterval(moveDown, 1000);
       displayShape();
       document.addEventListener("keyup", control);
+      startBtn.innerHTML = '<img src="./images/pause.png" alt="play/pause">';
     }
   }
   startBtn.addEventListener("click", StartPauseBtnClick);
@@ -342,6 +344,7 @@ document.addEventListener("DOMContentLoaded", () => {
       clearInterval(timerId);
       timerId = null;
     }
+    startBtn.innerHTML = '<img src="./images/play.png" alt="play/pause">';
 
     score = 0;
     scoreDisplay.innerHTML = score;
@@ -438,6 +441,15 @@ document.addEventListener("DOMContentLoaded", () => {
   });
   myModal.show();
 
+  document.querySelector(".myModalBtn").addEventListener("click", modalClick);
+  function modalClick() {
+    if (timerId) {
+      StartPauseBtnClick();
+      musicPlay();
+      myModal.show();
+    }
+  }
+
   // Play music on play/pause
   startBtn.addEventListener("click", musicPlay);
   function musicPlay() {
@@ -449,13 +461,14 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   muteBtn.onclick = function () {
-    if (muteBtn.innerHTML === "<img src=\"./images/mute.png\" alt=\"volume/mute\">") {
-      muteBtn.innerHTML = "<img src=\"./images/volume.png\" alt=\"volume/mute\">";
+    if (
+      muteBtn.innerHTML === '<img src="./images/mute.png" alt="volume/mute">'
+    ) {
+      muteBtn.innerHTML = '<img src="./images/volume.png" alt="volume/mute">';
       player.muted = false;
     } else {
-      muteBtn.innerHTML = "<img src=\"./images/mute.png\" alt=\"volume/mute\">";
+      muteBtn.innerHTML = '<img src="./images/mute.png" alt="volume/mute">';
       player.muted = true;
     }
   };
-  console.log(muteBtn.innerHTML);
 });
