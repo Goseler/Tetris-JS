@@ -449,12 +449,13 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   muteBtn.onclick = function () {
-    if (muteBtn.innerHTML === "🔇") {
-      muteBtn.innerHTML = "&#128266";
+    if (muteBtn.innerHTML === "<img src=\"./images/mute.png\" alt=\"volume/mute\">") {
+      muteBtn.innerHTML = "<img src=\"./images/volume.png\" alt=\"volume/mute\">";
       player.muted = false;
     } else {
-      muteBtn.innerHTML = "&#128263;";
+      muteBtn.innerHTML = "<img src=\"./images/mute.png\" alt=\"volume/mute\">";
       player.muted = true;
     }
   };
+  console.log(muteBtn.innerHTML);
 });
