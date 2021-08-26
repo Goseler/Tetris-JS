@@ -1,4 +1,5 @@
-html, body{
+html,
+body {
   min-height: 100%;
   padding: 0;
   margin: 0;
@@ -6,17 +7,17 @@ html, body{
 
 body {
   min-height: 100%;
-  background: linear-gradient(to bottom, transparent,#3e379b75), url(./images/bg-body.png) repeat;
+  /* background: linear-gradient(to bottom, #3a618685,#89253e85), url(./images/bg-body.png) repeat; */
+  /* background: linear-gradient(to bottom,#19547b70, #ffd99b70), url(./images/bg-body.png) repeat; */
+  /* background: linear-gradient(to bottom,#2C3E5070, #FD746C70), url(./images/bg-body.png) repeat; */
+  background: linear-gradient(to bottom, #3d405b70, #e07a5f70),
+    url(./images/bg-body.png) repeat;
   background-size: 150px;
-  font-family: 'Exo 2', sans-serif;
+  font-family: "Exo 2", sans-serif;
   font-weight: 500;
   /* background: -webkit-linear-gradient(to bottom, #355c7d, #6c5b7b, #c06c84);
   background: linear-gradient(to bottom, #355c7d, #6c5b7b, #c06c84); */
 }
-
-/* .container {
-  display: flex;
-} */
 
 .row div {
   display: flex;
@@ -25,7 +26,8 @@ body {
 }
 
 #hScore {
-  color: white;
+  color: #f4f1de;
+  font-size: x-large;
 }
 
 #controls {
@@ -33,6 +35,10 @@ body {
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-end;
+}
+#controls button{
+  margin-bottom: 5px;
+  /* width: -webkit-fill-available; */
 }
 
 #mini-grid {
@@ -43,7 +49,7 @@ body {
 #mainHeader {
   text-transform: uppercase;
   /* background: rgb(246,14,4); */
-  background: linear-gradient(
+  /* background: linear-gradient(
     90deg,
     rgba(246, 14, 4, 1) 0%,
     rgba(246, 127, 3, 1) 20%,
@@ -53,11 +59,23 @@ body {
     rgba(143, 0, 255, 1) 100%
   );
   -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  -webkit-text-fill-color: transparent; */
+  background: -webkit-linear-gradient(
+    0deg,
+    rgba(246, 14, 4, 1) 0%,
+    rgba(246, 127, 3, 1) 20%,
+    rgba(255, 241, 0, 1) 40%,
+    rgba(41, 255, 0, 1) 60%,
+    rgba(0, 255, 220, 1) 80%,
+    rgba(143, 0, 255, 1) 100%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-stroke: 8px transparent;
+  color: #3d405b;
   display: table;
   font-size: 56px;
   font-weight: 900;
-  letter-spacing: 15px;
+  letter-spacing: 30px;
   padding: 20px 0 20px 0;
 }
 
@@ -114,4 +132,14 @@ body {
 .mute:hover {
   cursor: pointer;
   text-decoration: none;
+}
+
+.btn-light {
+  background-color: #f2cc8f;
+  border-color: #f2cc8f;
+}
+
+.btn-light:hover {
+  background-color: #f4f1de;
+  border-color: #f4f1de;
 }
