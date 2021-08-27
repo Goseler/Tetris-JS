@@ -12,6 +12,9 @@ document.addEventListener("DOMContentLoaded", () => {
   const resetBtn = document.querySelector("#reset-button");
   const muteBtn = document.querySelector(".mute");
   const player = document.getElementById("player");
+  const group = Array.from(
+    document.querySelectorAll(".btn-group-vertical input")
+  );
   let timerId = null;
   let score = 0;
   const colors = [
@@ -305,7 +308,7 @@ document.addEventListener("DOMContentLoaded", () => {
         '<img src="./images/controls/play.png" alt="play/pause">';
     } else {
       draw();
-      timerId = setInterval(moveDown, 1000);
+      timerId = setInterval(moveDown, 1000 / getCurrentSpeed());
       displayShape();
       document.addEventListener("keyup", control);
       startBtn.innerHTML =
@@ -348,6 +351,11 @@ document.addEventListener("DOMContentLoaded", () => {
     }
     startBtn.innerHTML =
       '<img src="./images/controls/play.png" alt="play/pause">';
+    group.forEach((element) => {
+      element.checked = false;
+    });
+    const defaultRadioBtn = document.querySelector("#default-speed");
+    defaultRadioBtn.checked = true
 
     score = 0;
     scoreDisplay.innerHTML = score;
@@ -478,26 +486,22 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   };
 
-  const slowBtn = document.querySelector("#slow");
-  const defaultBtn = document.querySelector("#default");
-  const fastBtn = document.querySelector("#faster");
+  group.forEach((element) => {
+    element.addEventListener("click", changeSpeed);
+  });
 
-  function slowerSpeed() {
-    clearInterval(timerId);
-    timerId = setInterval(moveDown, 2000);
+  function changeSpeed() {
+    if (timerId) {
+      clearInterval(timerId);
+      timerId = setInterval(moveDown, 1000 / getCurrentSpeed());
+    }
   }
 
-  function defaultSpeed() {
-    clearInterval(timerId);
-    timerId = setInterval(moveDown, 1000);
+  function getCurrentSpeed() {
+    for (let element = 0; element < group.length; element++) {
+      if (group[element].checked) {
+        return group[element].value;
+      }
+    }
   }
-
-  function fasterSpeed() {
-    clearInterval(timerId);
-    timerId = setInterval(moveDown, 500);
-  }
-
-  slowBtn.addEventListener("click", slowerSpeed);
-  defaultBtn.addEventListener("click", defaultSpeed);
-  fastBtn.addEventListener("click", fasterSpeed);
 });

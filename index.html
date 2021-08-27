@@ -44,6 +44,16 @@
           <button type="button" id="start-button" class="btn btn-light">
             <img src="./images/controls/play.png" alt="play/pause" />
           </button>
+          <div class="btn-group-vertical" role="group">
+            <input type="radio" class="btn-check" name="btnradio" id="slow-speed" autocomplete="off" value=0.5>
+            <label class="btn btn-light" for="slow-speed">0.5x</label>
+
+            <input type="radio" class="btn-check" name="btnradio" id="default-speed" autocomplete="off" value=1 checked>
+            <label class="btn btn-light" for="default-speed">1x</label>
+
+            <input type="radio" class="btn-check" name="btnradio" id="fast-speed" autocomplete="off" value=2>
+            <label class="btn btn-light" for="fast-speed">2x</label>
+          </div>
           <button type="button" id="reset-button" class="btn btn-light">
             <img src="./images/controls/arrow-circle.png" alt="" />
           </button>
@@ -64,11 +74,6 @@
         <!-- Display next tetromino -->
         <div class="col" id="mini-grid">
           <div class="mini-grid"></div>
-          <div id="speedControls">
-            <button id="slow" type="button" class="btn btn-light"><img src="./images/controls/play.png" alt="0.5x speed"></button>
-            <button id="default" type="button" class="btn btn-light"><img src="./images/controls/play.png" alt="1x speed"></button>
-            <button id="faster" type="button" class="btn btn-light"><img src="./images/controls/play.png" alt="2x speed"></button>
-          </div>
         </div>
       </div>
       <div class="row"></div>

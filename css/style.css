@@ -53,7 +53,7 @@ body {
   justify-content: flex-start;
 }
 
-#controls button {
+#controls > * {
   margin-bottom: 5px;
 }
 
@@ -95,15 +95,6 @@ body {
 .mini-grid div {
   height: 20px;
   width: 20px;
-}
-
-#speedControls{
-  display: flex;
-  justify-content: flex-start;
-  align-items: flex-start;
-}
-#speedControls button{
-  margin-right: 5px;
 }
 
 /* Modal Content/Box */
