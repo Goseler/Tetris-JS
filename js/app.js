@@ -69,6 +69,9 @@ document.addEventListener("DOMContentLoaded", () => {
     iTetromino,
   ];
 
+  startBtn.addEventListener("click", StartPauseBtnClick);
+  resetBtn.addEventListener("click", resetBtnClick);
+
   function createGrid() {
     // Main grid
     let grid = document.querySelector(".grid");
@@ -127,8 +130,6 @@ document.addEventListener("DOMContentLoaded", () => {
       moveRight();
     } else if (e.keyCode === 40) {
       moveDown();
-    } else if (e.keyCode === 32) {
-      StartPauseBtnClick();
     }
   }
 
@@ -246,18 +247,6 @@ document.addEventListener("DOMContentLoaded", () => {
     checkRotatedPosition();
     draw();
   }
-  /////////
-
-  // // Rotate the tetromino
-  // function rotate() {
-  //   undraw();
-  //   currentRotation++;
-  //   if (currentRotation === current.length) {
-  //     currentRotation = 0;
-  //   }
-  //   current = theTetrominoes[random][currentRotation];
-  //   draw();
-  // }
 
   // Show up-next tetromino in mini-grid
   const displaySquares = Array.from(
@@ -269,12 +258,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // The Tetrominos without rotations
   const upNextTetrominoes = [
     [1, displayWidth + 1, displayWidth * 2 + 1, 2], // lTetromino
-    [
-      displayWidth * 2,
-      displayWidth * 2 + 1,
-      displayWidth + 1,
-      displayWidth + 2,
-    ], // zTetromino
+    [displayWidth * 2, displayWidth * 2 + 1, displayWidth + 1, displayWidth + 2, ], // zTetromino
     [1, displayWidth, displayWidth + 1, displayWidth + 2], // tTetromino
     [0, 1, displayWidth, displayWidth + 1], // oTetromino
     [1, displayWidth + 1, displayWidth * 2 + 1, displayWidth * 3 + 1], // iTetromino
@@ -315,7 +299,7 @@ document.addEventListener("DOMContentLoaded", () => {
         '<img src="./images/controls/pause.png" alt="play/pause">';
     }
   }
-  startBtn.addEventListener("click", StartPauseBtnClick);
+
 
   // Add function to reset grid
   function clearGrid() {
@@ -355,7 +339,7 @@ document.addEventListener("DOMContentLoaded", () => {
       element.checked = false;
     });
     const defaultRadioBtn = document.querySelector("#default-speed");
-    defaultRadioBtn.checked = true
+    defaultRadioBtn.checked = true;
 
     score = 0;
     scoreDisplay.innerHTML = score;
@@ -375,7 +359,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     document.getElementById("player").pause();
   }
-  resetBtn.addEventListener("click", resetBtnClick);
+
 
   // Add score
   function addScore() {
