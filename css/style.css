@@ -63,14 +63,14 @@ body {
 }
 
 .grid {
-  width: 202px;
-  height: 402px;
+  width: 204px;
+  height: 404px;
   display: flex;
   flex-wrap: wrap;
   background-color: gainsboro;
-  background: url("../images/game/cells/bg-cell-1.png") repeat;
+  background: url("../images/game/cells/bg-cell.png") repeat, #f4f1de20;
   background-size: 20px;
-  border: 1px solid gainsboro;
+  border: 2px solid #f2cc8f;
 }
 
 .grid div {
@@ -93,9 +93,9 @@ body {
   flex-wrap: wrap;
   background-color: gainsboro;
   margin-bottom: 5px;
-  background: url("../images/game/cells/bg-cell-1.png") repeat;
+  background: url("../images/game/cells/bg-cell.png") repeat, #f4f1de20;
   background-size: 20px;
-  border: 1px solid gainsboro;
+  border: 1px solid #f2cc8f;
 }
 
 .mini-grid div {

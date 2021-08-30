@@ -57,7 +57,7 @@ document.addEventListener("DOMContentLoaded", () => {
     [1, GRID_WIDTH + 1, GRID_WIDTH * 2 + 1, 0],
     [GRID_WIDTH, GRID_WIDTH + 1, GRID_WIDTH + 2, 2],
     [1, GRID_WIDTH + 1, GRID_WIDTH * 2 + 1, GRID_WIDTH * 2 + 2],
-    [GRID_WIDTH + 2, GRID_WIDTH * 2, GRID_WIDTH * 2 + 1, GRID_WIDTH * 2 + 2],
+    [GRID_WIDTH, GRID_WIDTH + 1, GRID_WIDTH + 2 , GRID_WIDTH * 2],
   ];
 
   const sTetromino = [
