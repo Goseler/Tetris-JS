@@ -12,9 +12,10 @@ document.addEventListener("DOMContentLoaded", () => {
   const resetBtn = document.querySelector("#reset-button");
   const muteBtn = document.querySelector(".mute");
   const player = document.getElementById("player");
-  const group = Array.from(
-    document.querySelectorAll(".btn-group-vertical input")
+  const speedCtrlBtns = Array.from(
+    document.querySelectorAll(".btn-speedCtrlBtns-vertical input")
   );
+  const rulesModalBtn = document.querySelector(".myModalBtn");
   let timerId = null;
   let score = 0;
   const colors = [
@@ -69,8 +70,15 @@ document.addEventListener("DOMContentLoaded", () => {
     iTetromino,
   ];
 
-  startBtn.addEventListener("click", StartPauseBtnClick);
-  resetBtn.addEventListener("click", resetBtnClick);
+  // Init EventListeners
+  startBtn.addEventListener("click", startPauseGame);
+  resetBtn.addEventListener("click", resetGame);
+  rulesModalBtn.addEventListener("click", rulesShow);
+  startBtn.addEventListener("click", playPauseMusic);
+  speedCtrlBtns.forEach((element) => {
+    element.addEventListener("click", changeSpeed);
+  });
+  muteBtn.addEventListener("click", muteUnmuteMusic);
 
   function createGrid() {
     // Main grid
@@ -283,7 +291,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // Add functionality to the button Start/Pause
-  function StartPauseBtnClick() {
+  function startPauseGame() {
     if (timerId) {
       clearInterval(timerId);
       timerId = null;
@@ -328,14 +336,14 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // Add functionality to the button Reset
-  function resetBtnClick() {
+  function resetGame() {
     if (timerId) {
       clearInterval(timerId);
       timerId = null;
     }
     startBtn.innerHTML =
       '<img src="./images/controls/play.png" alt="play/pause">';
-    group.forEach((element) => {
+    speedCtrlBtns.forEach((element) => {
       element.checked = false;
     });
     const defaultRadioBtn = document.querySelector("#default-speed");
@@ -436,18 +444,19 @@ document.addEventListener("DOMContentLoaded", () => {
   });
   myModal.show();
 
-  function modalClick() {
+  function rulesShow() {
     if (timerId) {
-      StartPauseBtnClick();
-      musicPlay();
+      startPauseGame();
+      playPauseMusic();
     }
     myModal.show();
   }
-  document.querySelector(".myModalBtn").addEventListener("click", modalClick);
+
+  
 
   // Play music on play/pause
-  startBtn.addEventListener("click", musicPlay);
-  function musicPlay() {
+
+  function playPauseMusic() {
     if (player.paused === true) {
       player.play();
     } else {
@@ -455,7 +464,8 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  muteBtn.onclick = function () {
+
+  function muteUnmuteMusic() {
     if (
       muteBtn.innerHTML ===
       '<img src="./images/controls/mute.png" alt="volume/mute">'
@@ -470,9 +480,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   };
 
-  group.forEach((element) => {
-    element.addEventListener("click", changeSpeed);
-  });
+
 
   function changeSpeed() {
     if (timerId) {
@@ -482,9 +490,9 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function getCurrentSpeed() {
-    for (let element = 0; element < group.length; element++) {
-      if (group[element].checked) {
-        return group[element].value;
+    for (let element = 0; element < speedCtrlBtns.length; element++) {
+      if (speedCtrlBtns[element].checked) {
+        return speedCtrlBtns[element].value;
       }
     }
   }
