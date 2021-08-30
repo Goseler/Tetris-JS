@@ -91,6 +91,7 @@ document.addEventListener("DOMContentLoaded", () => {
   );
   const rulesModalBtn = document.querySelector("#rules-modal-btn");
   const defaultSpeedBtn = document.querySelector("#default-speed-btn");
+  const rulesModal = document.getElementById("rules-modal");
 
   let squares = Array.from(document.querySelectorAll(".grid div"));
   let timerId = null;
@@ -103,13 +104,21 @@ document.addEventListener("DOMContentLoaded", () => {
   let random = Math.floor(Math.random() * theTetrominoes.length);
   let current = theTetrominoes[random][currentRotation];
 
-  let myModal = new bootstrap.Modal(document.getElementById("rules-modal"), {
+  let myModal = new bootstrap.Modal(rulesModal, {
     keyboard: true,
   });
 
   // Init EventListeners
   startBtn.addEventListener("click", startPauseGame);
   startBtn.addEventListener("click", playPauseMusic);
+  document.addEventListener("keyup", function (e) {
+    if (
+      !rulesModal.classList.contains("show") &&
+      ["Space"].indexOf(e.code) != -1
+    ) {
+      startBtn.click();
+    }
+  });
   resetBtn.addEventListener("click", resetGame);
   rulesModalBtn.addEventListener("click", rulesShow);
   speedCtrlBtns.forEach((element) => {
