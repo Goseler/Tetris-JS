@@ -120,10 +120,3 @@ body {
   background-color: #f4f1de;
   border-color: #f4f1de;
 }
-
-.btn:focus {
-  outline: none;
-  box-shadow: none;
-  background-color: #f2cc8f;
-  border-color: #f2cc8f;
-}

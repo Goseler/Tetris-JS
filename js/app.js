@@ -6,19 +6,28 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Auto-create grid
   const grid = createGrid();
-  let squares = Array.from(document.querySelectorAll(".grid div"));
-  const scoreDisplay = document.querySelector("#score");
-  const startBtn = document.querySelector("#start-btn");
-  const resetBtn = document.querySelector("#reset-btn");
-  const muteBtn = document.querySelector("#mute-btn");
-  const player = document.getElementById("player");
-  const speedCtrlBtns = Array.from(
-    document.querySelectorAll(".btn-speedCtrlBtns-vertical input")
+
+  // Show up-next tetromino in mini-grid
+  const displaySquares = Array.from(
+    document.querySelectorAll(".mini-grid div")
   );
-  const rulesModalBtn = document.querySelector("#rules-modal-btn");
-  const defaultSpeedBtn = document.querySelector("#default-speed-btn");
-  let timerId = null;
-  let score = 0;
+  const displayWidth = 4;
+  let displayIndex = 0;
+
+  // The Tetrominos without rotations
+  const upNextTetrominoes = [
+    [1, displayWidth + 1, displayWidth * 2 + 1, 2], // lTetromino
+    [
+      displayWidth * 2,
+      displayWidth * 2 + 1,
+      displayWidth + 1,
+      displayWidth + 2,
+    ], // zTetromino
+    [1, displayWidth, displayWidth + 1, displayWidth + 2], // tTetromino
+    [0, 1, displayWidth, displayWidth + 1], // oTetromino
+    [1, displayWidth + 1, displayWidth * 2 + 1, displayWidth * 3 + 1], // iTetromino
+  ];
+
   const colors = [
     "url(./images/game/tetrominoes/block-orange.png)",
     "url(./images/game/tetrominoes/block-red.png)",
@@ -71,15 +80,45 @@ document.addEventListener("DOMContentLoaded", () => {
     iTetromino,
   ];
 
+  // Init html elements
+  const scoreDisplay = document.querySelector("#score");
+  const startBtn = document.querySelector("#start-btn");
+  const resetBtn = document.querySelector("#reset-btn");
+  const muteBtn = document.querySelector("#mute-btn");
+  const player = document.getElementById("player");
+  const speedCtrlBtns = Array.from(
+    document.querySelectorAll(".btn-group-vertical input")
+  );
+  const rulesModalBtn = document.querySelector("#rules-modal-btn");
+  const defaultSpeedBtn = document.querySelector("#default-speed-btn");
+
+  let squares = Array.from(document.querySelectorAll(".grid div"));
+  let timerId = null;
+  let score = 0;
+  let currentPosition = 4;
+  let currentRotation = 0;
+
+  // Randomly select a Tetromino and its first rotation
+  let nextRandom = Math.floor(Math.random() * theTetrominoes.length);
+  let random = Math.floor(Math.random() * theTetrominoes.length);
+  let current = theTetrominoes[random][currentRotation];
+
+  let myModal = new bootstrap.Modal(document.getElementById("rules-modal"), {
+    keyboard: true,
+  });
+
   // Init EventListeners
   startBtn.addEventListener("click", startPauseGame);
+  startBtn.addEventListener("click", playPauseMusic);
   resetBtn.addEventListener("click", resetGame);
   rulesModalBtn.addEventListener("click", rulesShow);
-  startBtn.addEventListener("click", playPauseMusic);
   speedCtrlBtns.forEach((element) => {
     element.addEventListener("click", changeSpeed);
   });
   muteBtn.addEventListener("click", muteUnmuteMusic);
+
+  initLocalStorage();
+  rulesShow();
 
   function createGrid() {
     // Main grid
@@ -105,14 +144,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     return grid;
   }
-
-  let currentPosition = 4;
-  let currentRotation = 0;
-
-  // Randomly select a Tetromino and its first rotation
-  let nextRandom = Math.floor(Math.random() * theTetrominoes.length);
-  let random = Math.floor(Math.random() * theTetrominoes.length);
-  let current = theTetrominoes[random][currentRotation];
 
   // Draw the tetromino
   function draw() {
@@ -149,7 +180,6 @@ document.addEventListener("DOMContentLoaded", () => {
     freeze();
   }
 
-  // Freeze function
   function freeze() {
     if (
       current.some((index) =>
@@ -257,22 +287,6 @@ document.addEventListener("DOMContentLoaded", () => {
     draw();
   }
 
-  // Show up-next tetromino in mini-grid
-  const displaySquares = Array.from(
-    document.querySelectorAll(".mini-grid div")
-  );
-  const displayWidth = 4;
-  let displayIndex = 0;
-
-  // The Tetrominos without rotations
-  const upNextTetrominoes = [
-    [1, displayWidth + 1, displayWidth * 2 + 1, 2], // lTetromino
-    [displayWidth * 2, displayWidth * 2 + 1, displayWidth + 1, displayWidth + 2, ], // zTetromino
-    [1, displayWidth, displayWidth + 1, displayWidth + 2], // tTetromino
-    [0, 1, displayWidth, displayWidth + 1], // oTetromino
-    [1, displayWidth + 1, displayWidth * 2 + 1, displayWidth * 3 + 1], // iTetromino
-  ];
-
   // Display the shape in the mini-grid display
   function displayShape() {
     displayShapeClear();
@@ -307,8 +321,8 @@ document.addEventListener("DOMContentLoaded", () => {
       startBtn.innerHTML =
         '<img src="./images/controls/pause.png" alt="play/pause">';
     }
+    this.blur();
   }
-
 
   // Add function to reset grid
   function clearGrid() {
@@ -365,9 +379,10 @@ document.addEventListener("DOMContentLoaded", () => {
     startBtn.disabled = false;
     document.addEventListener("keyup", control);
 
-    document.getElementById("player").pause();
-  }
+    player.pause();
 
+    this.blur();
+  }
 
   // Add score
   function addScore() {
@@ -411,8 +426,10 @@ document.addEventListener("DOMContentLoaded", () => {
     draw();
   }
 
-  if (localStorage.getItem("bestScore") === null) {
-    localStorage.setItem("bestScore", 0);
+  function initLocalStorage() {
+    if (localStorage.getItem("bestScore") === null) {
+      localStorage.setItem("bestScore", 0);
+    }
   }
 
   // Game over
@@ -435,27 +452,20 @@ document.addEventListener("DOMContentLoaded", () => {
       document.removeEventListener("keyup", control);
       startBtn.disabled = true;
 
-      document.getElementById("player").pause();
+      player.pause();
     }
   }
-
-  var myModal = new bootstrap.Modal(document.getElementById("rules-modal"), {
-    keyboard: true,
-  });
-  myModal.show();
 
   function rulesShow() {
     if (timerId) {
       startPauseGame();
       playPauseMusic();
     }
+    this.blur();
     myModal.show();
   }
 
-  
-
   // Play music on play/pause
-
   function playPauseMusic() {
     if (player.paused === true) {
       player.play();
@@ -463,7 +473,6 @@ document.addEventListener("DOMContentLoaded", () => {
       player.pause();
     }
   }
-
 
   function muteUnmuteMusic() {
     if (
@@ -478,15 +487,15 @@ document.addEventListener("DOMContentLoaded", () => {
         '<img src="./images/controls/mute.png" alt="volume/mute">';
       player.muted = true;
     }
-  };
-
-
+    this.blur();
+  }
 
   function changeSpeed() {
     if (timerId) {
       clearInterval(timerId);
       timerId = setInterval(moveDown, 1000 / getCurrentSpeed());
     }
+    this.blur();
   }
 
   function getCurrentSpeed() {
