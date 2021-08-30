@@ -16,12 +16,19 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // The Tetrominos without rotations
   const upNextTetrominoes = [
-    [1, displayWidth + 1, displayWidth * 2 + 1, 2], // lTetromino
+    [1, displayWidth + 1, displayWidth * 2 + 1, 2], // jTetromino
+    [1, displayWidth + 1, displayWidth * 2 + 1, 0], // lTetromino
     [
       displayWidth * 2,
       displayWidth * 2 + 1,
       displayWidth + 1,
       displayWidth + 2,
+    ], // sTetromino
+    [
+      displayWidth,
+      displayWidth * 2 + 1,
+      displayWidth + 1,
+      displayWidth * 2 + 2,
     ], // zTetromino
     [1, displayWidth, displayWidth + 1, displayWidth + 2], // tTetromino
     [0, 1, displayWidth, displayWidth + 1], // oTetromino
@@ -29,26 +36,42 @@ document.addEventListener("DOMContentLoaded", () => {
   ];
 
   const colors = [
+    "url(./images/game/tetrominoes/block-blue.png)",
     "url(./images/game/tetrominoes/block-orange.png)",
+    "url(./images/game/tetrominoes/block-green.png)",
     "url(./images/game/tetrominoes/block-red.png)",
     "url(./images/game/tetrominoes/block-purple.png)",
-    "url(./images/game/tetrominoes/block-green.png)",
-    "url(./images/game/tetrominoes/block-blue.png)",
+    "url(./images/game/tetrominoes/block-lime.png)",
+    "url(./images/game/tetrominoes/block-aquamarine.png)",
   ];
 
   // The Tetrominoes
-  const lTetromino = [
+  const jTetromino = [
     [1, GRID_WIDTH + 1, GRID_WIDTH * 2 + 1, 2],
     [GRID_WIDTH, GRID_WIDTH + 1, GRID_WIDTH + 2, GRID_WIDTH * 2 + 2],
     [1, GRID_WIDTH + 1, GRID_WIDTH * 2 + 1, GRID_WIDTH * 2],
     [GRID_WIDTH, GRID_WIDTH * 2, GRID_WIDTH * 2 + 1, GRID_WIDTH * 2 + 2],
   ];
 
+  const lTetromino = [
+    [1, GRID_WIDTH + 1, GRID_WIDTH * 2 + 1, 0],
+    [GRID_WIDTH, GRID_WIDTH + 1, GRID_WIDTH + 2, 2],
+    [1, GRID_WIDTH + 1, GRID_WIDTH * 2 + 1, GRID_WIDTH * 2 + 2],
+    [GRID_WIDTH + 2, GRID_WIDTH * 2, GRID_WIDTH * 2 + 1, GRID_WIDTH * 2 + 2],
+  ];
+
+  const sTetromino = [
+    [GRID_WIDTH * 2, GRID_WIDTH * 2 + 1, GRID_WIDTH + 1, GRID_WIDTH + 2],
+    [0, GRID_WIDTH, GRID_WIDTH + 1, GRID_WIDTH * 2 + 1],
+    [GRID_WIDTH * 2, GRID_WIDTH * 2 + 1, GRID_WIDTH + 1, GRID_WIDTH + 2],
+    [0, GRID_WIDTH, GRID_WIDTH + 1, GRID_WIDTH * 2 + 1],
+  ];
+
   const zTetromino = [
-    [GRID_WIDTH * 2, GRID_WIDTH * 2 + 1, GRID_WIDTH + 1, GRID_WIDTH + 2],
-    [0, GRID_WIDTH, GRID_WIDTH + 1, GRID_WIDTH * 2 + 1],
-    [GRID_WIDTH * 2, GRID_WIDTH * 2 + 1, GRID_WIDTH + 1, GRID_WIDTH + 2],
-    [0, GRID_WIDTH, GRID_WIDTH + 1, GRID_WIDTH * 2 + 1],
+    [GRID_WIDTH, GRID_WIDTH * 2 + 1, GRID_WIDTH + 1, GRID_WIDTH * 2 + 2],
+    [1, GRID_WIDTH, GRID_WIDTH + 1, GRID_WIDTH * 2],
+    [GRID_WIDTH, GRID_WIDTH * 2 + 1, GRID_WIDTH + 1, GRID_WIDTH * 2 + 2],
+    [1, GRID_WIDTH, GRID_WIDTH + 1, GRID_WIDTH * 2],
   ];
 
   const tTetromino = [
@@ -73,7 +96,9 @@ document.addEventListener("DOMContentLoaded", () => {
   ];
 
   const theTetrominoes = [
+    jTetromino,
     lTetromino,
+    sTetromino,
     zTetromino,
     tTetromino,
     oTetromino,

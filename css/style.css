@@ -67,7 +67,7 @@ body {
   height: 400px;
   display: flex;
   flex-wrap: wrap;
-  background-color: yellow;
+  background-color: gainsboro;
 }
 
 .grid div {
@@ -87,7 +87,7 @@ body {
   height: 80px;
   display: flex;
   flex-wrap: wrap;
-  background-color: yellow;
+  background-color: gainsboro;
   margin-bottom: 5px;
 }
 
