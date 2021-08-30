@@ -67,7 +67,6 @@ body {
   height: 404px;
   display: flex;
   flex-wrap: wrap;
-  background-color: gainsboro;
   background: url("../images/game/cells/bg-cell.png") repeat, #f4f1de20;
   background-size: 20px;
   border: 2px solid #f2cc8f;
@@ -91,7 +90,6 @@ body {
   height: 82px;
   display: flex;
   flex-wrap: wrap;
-  background-color: gainsboro;
   margin-bottom: 5px;
   background: url("../images/game/cells/bg-cell.png") repeat, #f4f1de20;
   background-size: 20px;
