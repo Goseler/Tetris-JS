@@ -1,0 +1,137 @@
+html,
+body {
+  min-height: 100%;
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  background: linear-gradient(to bottom, #3d405b70, #e07a5f70),
+    url(../images/bg-body.png) repeat;
+  background-size: 150px;
+  font-family: "Exo 2", sans-serif;
+  font-weight: 500;
+}
+
+#main-header {
+  text-transform: uppercase;
+  background: -webkit-linear-gradient(
+    0deg,
+    rgba(246, 14, 4, 1) 0%,
+    rgba(246, 127, 3, 1) 20%,
+    rgba(255, 241, 0, 1) 40%,
+    rgba(41, 255, 0, 1) 60%,
+    rgba(0, 255, 220, 1) 80%,
+    rgba(143, 0, 255, 1) 100%
+  );
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-stroke: 8px transparent;
+  color: #3d405b;
+  display: table;
+  font-size: 56px;
+  font-weight: 900;
+  letter-spacing: 30px;
+  padding: 20px 0 20px 0;
+}
+
+.row div {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+#header-score {
+  color: #f4f1de;
+  font-size: x-large;
+}
+
+.controls {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: flex-start;
+}
+
+.controls > * {
+  margin-bottom: 5px;
+}
+
+#mute-btn:hover {
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.grid {
+  width: 204px;
+  height: 404px;
+  display: flex;
+  flex-wrap: wrap;
+  background: url("../images/game/cells/bg-cell.png") repeat, #f4f1de20;
+  background-size: 20px;
+  border: 2px solid #f2cc8f;
+}
+
+.grid div {
+  margin: 0;
+  height: 20px;
+  width: 20px;
+}
+
+#mini-grid {
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.mini-grid {
+  width: 82px;
+  height: 82px;
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 5px;
+  background: url("../images/game/cells/bg-cell.png") repeat, #f4f1de20;
+  background-size: 20px;
+  border: 1px solid #f2cc8f;
+}
+
+.mini-grid div {
+  height: 20px;
+  width: 20px;
+}
+
+#footer {
+  margin-top: 15px;
+  margin-bottom: 15px;
+  min-width: 100%;
+}
+
+#footer a {
+  color: black;
+}
+
+/* Modal Content/Box */
+.modal-content {
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  text-align: center;
+  opacity: 85%;
+}
+
+.modal-content ul {
+  width: 80%;
+  margin: auto;
+  text-align: left;
+}
+
+/* Bootstrap styles change */
+.btn-light {
+  background-color: #f2cc8f;
+  border-color: #f2cc8f;
+}
+
+.btn-light:hover {
+  background-color: #f4f1de;
+  border-color: #f4f1de;
+}
