@@ -30,40 +30,40 @@
     <div class="container">
       <div class="row justify-content-center">
         <div class="col">
-          <h1 id="mainHeader"> Tetris</h1>
+          <h1 id="main-header"> Tetris</h1>
         </div>
       </div>
       <div class="row justify-content-center">
         <div class="col">
-          <h3 id="hScore">Score <span id="score">0</span></h3>
+          <h3 id="header-score">Score <span id="score">0</span></h3>
         </div>
       </div>
       <div class="row justify-content-center">
         <!-- Control panel -->
-        <div class="col" id="controls">
-          <button type="button" id="start-button" class="btn btn-light">
+        <div class="col controls">
+          <button type="button" id="start-btn" class="btn btn-light">
             <img src="./images/controls/play.png" alt="play/pause" />
           </button>
           <div class="btn-group-vertical" role="group">
-            <input type="radio" class="btn-check" name="btnradio" id="slow-speed" autocomplete="off" value=0.5>
+            <input type="radio" class="btn-check" name="btnradio" id="slow-speed-btn" autocomplete="off" value=0.5>
             <label class="btn btn-light" for="slow-speed">0.5x</label>
 
-            <input type="radio" class="btn-check" name="btnradio" id="default-speed" autocomplete="off" value=1 checked>
+            <input type="radio" class="btn-check" name="btnradio" id="default-speed-btn" autocomplete="off" value=1 checked>
             <label class="btn btn-light" for="default-speed">1x</label>
 
-            <input type="radio" class="btn-check" name="btnradio" id="fast-speed" autocomplete="off" value=2>
+            <input type="radio" class="btn-check" name="btnradio" id="fast-speed-btn" autocomplete="off" value=2>
             <label class="btn btn-light" for="fast-speed">2x</label>
           </div>
-          <button type="button" id="reset-button" class="btn btn-light">
+          <button type="button" id="reset-btn" class="btn btn-light">
             <img src="./images/controls/arrow-circle.png" alt="" />
           </button>
-          <button type="button" class="btn btn-light myModalBtn">
+          <button type="button" class="btn btn-light" id="rules-modal-btn">
             <img
               src="./images/controls/info-letter-interface-sign.png"
               alt="info-button"
             />
           </button>
-          <button type="button" class="mute btn btn-light">
+          <button type="button" class="btn btn-light" id="mute-btn">
             <img src="./images/controls/volume.png" alt="volume/mute" />
           </button>
         </div>
@@ -74,14 +74,13 @@
         <!-- Display next tetromino -->
         <div class="col" id="mini-grid">
           <div class="mini-grid"></div>
-
         </div>
       </div>
       <div class="row"></div>
     </div>
 
     <!-- Modal window with rules -->
-    <div class="modal fade" tabindex="-1" id="myModal">
+    <div class="modal fade" tabindex="-1" id="rules-modal">
       <div class="modal-dialog modal-lg modal-dialog-centered">
         <div class="modal-content">
           <div class="modal-header">

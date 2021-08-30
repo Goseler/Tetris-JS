@@ -8,14 +8,15 @@ document.addEventListener("DOMContentLoaded", () => {
   const grid = createGrid();
   let squares = Array.from(document.querySelectorAll(".grid div"));
   const scoreDisplay = document.querySelector("#score");
-  const startBtn = document.querySelector("#start-button");
-  const resetBtn = document.querySelector("#reset-button");
-  const muteBtn = document.querySelector(".mute");
+  const startBtn = document.querySelector("#start-btn");
+  const resetBtn = document.querySelector("#reset-btn");
+  const muteBtn = document.querySelector("#mute-btn");
   const player = document.getElementById("player");
   const speedCtrlBtns = Array.from(
     document.querySelectorAll(".btn-speedCtrlBtns-vertical input")
   );
-  const rulesModalBtn = document.querySelector(".myModalBtn");
+  const rulesModalBtn = document.querySelector("#rules-modal-btn");
+  const defaultSpeedBtn = document.querySelector("#default-speed-btn");
   let timerId = null;
   let score = 0;
   const colors = [
@@ -346,8 +347,7 @@ document.addEventListener("DOMContentLoaded", () => {
     speedCtrlBtns.forEach((element) => {
       element.checked = false;
     });
-    const defaultRadioBtn = document.querySelector("#default-speed");
-    defaultRadioBtn.checked = true;
+    defaultSpeedBtn.checked = true;
 
     score = 0;
     scoreDisplay.innerHTML = score;
@@ -439,7 +439,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  var myModal = new bootstrap.Modal(document.getElementById("myModal"), {
+  var myModal = new bootstrap.Modal(document.getElementById("rules-modal"), {
     keyboard: true,
   });
   myModal.show();

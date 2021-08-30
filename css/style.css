@@ -13,7 +13,7 @@ body {
   font-weight: 500;
 }
 
-#mainHeader {
+#main-header {
   text-transform: uppercase;
   background: -webkit-linear-gradient(
     0deg,
@@ -41,24 +41,23 @@ body {
   justify-content: center;
 }
 
-#hScore {
+#header-score {
   color: #f4f1de;
   font-size: x-large;
 }
 
-#controls {
+.controls {
   display: flex;
   flex-direction: column;
   align-items: flex-end;
   justify-content: flex-start;
 }
 
-#controls > * {
+.controls > * {
   margin-bottom: 5px;
 }
 
-.mute:hover,
-.mute:hover {
+#mute-btn:hover {
   cursor: pointer;
   text-decoration: none;
 }
