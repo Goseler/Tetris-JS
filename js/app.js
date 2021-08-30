@@ -116,6 +116,19 @@ document.addEventListener("DOMContentLoaded", () => {
     element.addEventListener("click", changeSpeed);
   });
   muteBtn.addEventListener("click", muteUnmuteMusic);
+  window.addEventListener(
+    "keydown",
+    function (e) {
+      if (
+        ["Space", "ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight"].indexOf(
+          e.code
+        ) > -1
+      ) {
+        e.preventDefault();
+      }
+    },
+    false
+  );
 
   initLocalStorage();
   rulesShow();
