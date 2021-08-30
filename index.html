@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Basic Tetris</title>
-    <link rel="shortcut icon" href="./images/favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="./images/favicon.ico" type="image/x-icon" />
     <!-- Bootstrap & style.css -->
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
@@ -45,13 +45,35 @@
             <img src="./images/controls/play.png" alt="play/pause" />
           </button>
           <div class="btn-group-vertical" role="group">
-            <input type="radio" class="btn-check" name="btnradio" id="slow-speed-btn" autocomplete="off" value=0.5>
+            <input
+              type="radio"
+              class="btn-check"
+              name="btnradio"
+              id="slow-speed-btn"
+              autocomplete="off"
+              value="0.5"
+            />
             <label class="btn btn-light" for="slow-speed-btn">0.5x</label>
 
-            <input type="radio" class="btn-check" name="btnradio" id="default-speed-btn" autocomplete="off" value=1 checked>
+            <input
+              type="radio"
+              class="btn-check"
+              name="btnradio"
+              id="default-speed-btn"
+              autocomplete="off"
+              value="1"
+              checked
+            />
             <label class="btn btn-light" for="default-speed-btn">1x</label>
 
-            <input type="radio" class="btn-check" name="btnradio" id="fast-speed-btn" autocomplete="off" value=2>
+            <input
+              type="radio"
+              class="btn-check"
+              name="btnradio"
+              id="fast-speed-btn"
+              autocomplete="off"
+              value="2"
+            />
             <label class="btn btn-light" for="fast-speed-btn">2x</label>
           </div>
           <button type="button" id="reset-btn" class="btn btn-light">
@@ -76,7 +98,23 @@
           <div class="mini-grid"></div>
         </div>
       </div>
-      <div class="row"></div>
+      <div class="row justify-content-center">
+        <div class="col-auto" id="footer">
+          <h4>GitHub project: <a href="https://github.com/Goseler/Tetris-JS-Practice">Tetris JS</a></h4>
+          <div class="w-100"></div>
+          <h4>My GitHub profile: <a href="https://github.com/Goseler">Vitalii Rudkin</a></h4>
+          <div class="w-100"></div>
+          <iframe
+            width="560"
+            height="315"
+            src="https://www.youtube.com/embed/rAUn1Lom6dw"
+            title="YouTube video player"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen
+          ></iframe>
+        </div>
+      </div>
     </div>
 
     <!-- Modal window with rules -->
@@ -97,24 +135,36 @@
             <ul>
               <li>
                 Use the UP
-                <img src="./images/modals/rules/up-arrow.png" alt="up-arrow" /> arrow to
-                rotate the tetromino.
+                <img src="./images/modals/rules/up-arrow.png" alt="up-arrow" />
+                arrow to rotate the tetromino.
               </li>
               <li>
                 To move the tetromino left, use the LEFT
-                <img src="./images/modals/rules/left-arrow.png" alt="left-arrow" /> arrow
+                <img
+                  src="./images/modals/rules/left-arrow.png"
+                  alt="left-arrow"
+                />
+                arrow
               </li>
               <li>
                 To move the tetromino right, use the RIGHT
-                <img src="./images/modals/rules/right-arrow.png" alt="right-arrow" /> arrow
+                <img
+                  src="./images/modals/rules/right-arrow.png"
+                  alt="right-arrow"
+                />
+                arrow
               </li>
               <li>
                 Use the DOWN
-                <img src="./images/modals/rules/down-arrow.png" alt="down-arrow" />
+                <img
+                  src="./images/modals/rules/down-arrow.png"
+                  alt="down-arrow"
+                />
                 arrow to accelerate the fall of the tetromino.
               </li>
               <li>
-                Use the SPACEBAR <img src="./images/modals/rules/space.png" alt="space" /> to
+                Use the SPACEBAR
+                <img src="./images/modals/rules/space.png" alt="space" /> to
                 resume / pause the game.
               </li>
             </ul>

@@ -96,6 +96,16 @@ body {
   width: 20px;
 }
 
+#footer{
+  margin-top: 15px;
+  margin-bottom: 15px;
+  min-width: 100%;
+}
+
+#footer a{
+  color: black;
+}
+
 /* Modal Content/Box */
 .modal-content {
   background-color: rgba(0, 0, 0, 0.5);
