@@ -46,14 +46,14 @@ body {
   font-size: x-large;
 }
 
-.controls {
+#controls {
   display: flex;
   flex-direction: column;
   align-items: flex-end;
   justify-content: flex-start;
 }
 
-.controls > * {
+#controls > * {
   margin-bottom: 5px;
 }
 
