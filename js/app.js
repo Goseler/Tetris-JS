@@ -125,6 +125,9 @@ document.addEventListener("DOMContentLoaded", () => {
   let currentPosition = 4;
   let currentRotation = 0;
   const startSpeed = 0.5;
+  const koef = 0.25;
+  const maxLimit = 20000;
+  const step = 2000;
 
   // Randomly select a Tetromino and its first rotation
   let nextRandoms = [];
@@ -516,13 +519,12 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function increaseSpeed() {
-    if (score <= 20000 && score > 0) {
+    if (score <= maxLimit && score > 0) {
       clearInterval(timerId);
       timerId = setInterval(
         moveDown,
-        1000 / (startSpeed + (0.25 * Math.floor(score / 2000)))
+        1000 / (startSpeed + (koef * Math.floor(score / step)))
       );
-      console.log(startSpeed + 0.25 * Math.floor(score / 2000));
     }
   }
 
