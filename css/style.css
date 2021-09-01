@@ -144,7 +144,9 @@ body {
   height: 60px;
 }
 
-.switch input {display:none;}
+.switch input {
+  display: none;
+}
 
 .slider {
   position: absolute;
@@ -154,8 +156,8 @@ body {
   right: 0;
   bottom: 0;
   background-color: #f2cc8f;
-  -webkit-transition: .4s;
-  transition: .4s;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
   border-radius: 34px;
 }
 
@@ -167,8 +169,8 @@ body {
   left: 4px;
   bottom: 4px;
   background-color: white;
-  -webkit-transition: .4s;
-  transition: .4s;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
   border-radius: 34px;
 }
 
@@ -184,4 +186,10 @@ input:checked + .slider:before {
   -webkit-transform: translateY(-26px);
   -ms-transform: translateY(-26px);
   transform: translateY(-26px);
+}
+
+input:disabled + .slider {
+  opacity: 0.65;
+  pointer-events: none;
+  cursor: not-allowed;
 }

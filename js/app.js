@@ -117,7 +117,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const rulesModalBtn = document.querySelector("#rules-modal-btn");
   const defaultSpeedBtn = document.querySelector("#default-speed-btn");
   const rulesModal = document.getElementById("rules-modal");
-  const switchMode = document.querySelector('#switch-mode');
+  const switchMode = document.querySelector("#switch-mode");
 
   let squares = Array.from(document.querySelectorAll(".grid div"));
   let timerId = null;
@@ -142,6 +142,8 @@ document.addEventListener("DOMContentLoaded", () => {
   // Init EventListeners
   startBtn.addEventListener("click", startPauseGame);
   startBtn.addEventListener("click", playPauseMusic);
+  startBtn.addEventListener("click", switchOff);
+  startBtn.addEventListener("click", speedCtrlBtnsOff);
   document.addEventListener("keyup", function (e) {
     if (
       !rulesModal.classList.contains("show") &&
@@ -151,6 +153,9 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
   resetBtn.addEventListener("click", resetGame);
+  resetBtn.addEventListener("click", switchOn);
+  resetBtn.addEventListener("click", speedCtrlBtnsOn);
+  resetBtn.addEventListener("click", modeSwitch);
   rulesModalBtn.addEventListener("click", rulesShow);
   speedCtrlBtns.forEach((element) => {
     element.addEventListener("click", changeSpeed);
@@ -583,9 +588,28 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function modeSwitch() {
     if (switchMode.checked) {
-      
+      speedCtrlBtnsOff();
     } else {
-      
+      speedCtrlBtnsOn();
     }
+  }
+
+  function switchOff() {
+    switchMode.disabled = true;
+  }
+
+  function switchOn() {
+    switchMode.disabled = false;
+  }
+
+  function speedCtrlBtnsOff() {
+    speedCtrlBtns.forEach((element) => {
+      element.disabled = true;
+    });
+  }
+  function speedCtrlBtnsOn() {
+    speedCtrlBtns.forEach((element) => {
+      element.disabled = false;
+    });
   }
 });
