@@ -117,12 +117,17 @@ document.addEventListener("DOMContentLoaded", () => {
   const rulesModalBtn = document.querySelector("#rules-modal-btn");
   const defaultSpeedBtn = document.querySelector("#default-speed-btn");
   const rulesModal = document.getElementById("rules-modal");
+  const switchMode = document.querySelector("#switch-mode");
 
   let squares = Array.from(document.querySelectorAll(".grid div"));
   let timerId = null;
   let score = 0;
   let currentPosition = 4;
   let currentRotation = 0;
+  const startSpeed = 0.5;
+  const koef = 0.25;
+  const maxLimit = 20000;
+  const step = 2000;
 
   // Randomly select a Tetromino and its first rotation
   let nextRandoms = [];
@@ -141,6 +146,8 @@ document.addEventListener("DOMContentLoaded", () => {
   // Init EventListeners
   startBtn.addEventListener("click", startPauseGame);
   startBtn.addEventListener("click", playPauseMusic);
+  startBtn.addEventListener("click", switchOff);
+  startBtn.addEventListener("click", speedCtrlBtnsOff);
   document.addEventListener("keyup", function (e) {
     if (
       !rulesModal.classList.contains("show") &&
@@ -150,11 +157,15 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
   resetBtn.addEventListener("click", resetGame);
+  resetBtn.addEventListener("click", switchOn);
+  resetBtn.addEventListener("click", speedCtrlBtnsOn);
+  resetBtn.addEventListener("click", modeSwitch);
   rulesModalBtn.addEventListener("click", rulesShow);
   speedCtrlBtns.forEach((element) => {
     element.addEventListener("click", changeSpeed);
   });
   muteBtn.addEventListener("click", muteUnmuteMusic);
+  switchMode.addEventListener("change", modeSwitch);
   window.addEventListener(
     "keydown",
     function (e) {
@@ -385,7 +396,11 @@ document.addEventListener("DOMContentLoaded", () => {
         '<img src="./images/controls/play.png" alt="play/pause">';
     } else {
       draw();
-      timerId = setInterval(moveDown, 1000 / getCurrentSpeed());
+      if (switchMode.checked) {
+        timerId = setInterval(moveDown, 1000 / startSpeed);
+      } else {
+        timerId = setInterval(moveDown, 1000 / getCurrentSpeed());
+      }
       displayShape();
       document.addEventListener("keyup", control);
       startBtn.innerHTML =
@@ -490,13 +505,31 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     }
 
-    score += lines * 100;
-    if (lines === 4) {
-      score += 400;
+    if (switchMode.checked) {
+      score += lines * 100;
+      if (lines === 4) {
+        score += 400;
+      }
+      increaseSpeed();
+    } else {
+      score += lines * 100 * getCurrentSpeed();
+      if (lines === 4) {
+        score += 400 * getCurrentSpeed();
+      }
     }
     scoreDisplay.innerHTML = score;
 
     draw();
+  }
+
+  function increaseSpeed() {
+    if (score <= maxLimit && score > 0) {
+      clearInterval(timerId);
+      timerId = setInterval(
+        moveDown,
+        1000 / (startSpeed + koef * Math.floor(score / step))
+      );
+    }
   }
 
   function initLocalStorage() {
@@ -577,5 +610,32 @@ document.addEventListener("DOMContentLoaded", () => {
         return speedCtrlBtns[element].value;
       }
     }
+  }
+
+  function modeSwitch() {
+    if (switchMode.checked) {
+      speedCtrlBtnsOff();
+    } else {
+      speedCtrlBtnsOn();
+    }
+  }
+
+  function switchOff() {
+    switchMode.disabled = true;
+  }
+
+  function switchOn() {
+    switchMode.disabled = false;
+  }
+
+  function speedCtrlBtnsOff() {
+    speedCtrlBtns.forEach((element) => {
+      element.disabled = true;
+    });
+  }
+  function speedCtrlBtnsOn() {
+    speedCtrlBtns.forEach((element) => {
+      element.disabled = false;
+    });
   }
 });
