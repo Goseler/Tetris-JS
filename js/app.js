@@ -96,12 +96,12 @@ document.addEventListener("DOMContentLoaded", () => {
   ];
 
   const theTetrominoes = [
-    // jTetromino,
-    // lTetromino,
-    // sTetromino,
-    // zTetromino,
-    // tTetromino,
-    // oTetromino,
+    jTetromino,
+    lTetromino,
+    sTetromino,
+    zTetromino,
+    tTetromino,
+    oTetromino,
     iTetromino,
   ];
 
@@ -396,7 +396,11 @@ document.addEventListener("DOMContentLoaded", () => {
         '<img src="./images/controls/play.png" alt="play/pause">';
     } else {
       draw();
-      timerId = setInterval(moveDown, 1000 / getCurrentSpeed());
+      if (switchMode.checked) {
+        timerId = setInterval(moveDown, 1000 / startSpeed);
+      } else {
+        timerId = setInterval(moveDown, 1000 / getCurrentSpeed());
+      }
       displayShape();
       document.addEventListener("keyup", control);
       startBtn.innerHTML =
@@ -523,7 +527,7 @@ document.addEventListener("DOMContentLoaded", () => {
       clearInterval(timerId);
       timerId = setInterval(
         moveDown,
-        1000 / (startSpeed + (koef * Math.floor(score / step)))
+        1000 / (startSpeed + koef * Math.floor(score / step))
       );
     }
   }
