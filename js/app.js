@@ -96,12 +96,12 @@ document.addEventListener("DOMContentLoaded", () => {
   ];
 
   const theTetrominoes = [
-    jTetromino,
-    lTetromino,
-    sTetromino,
-    zTetromino,
-    tTetromino,
-    oTetromino,
+    // jTetromino,
+    // lTetromino,
+    // sTetromino,
+    // zTetromino,
+    // tTetromino,
+    // oTetromino,
     iTetromino,
   ];
 
@@ -119,12 +119,12 @@ document.addEventListener("DOMContentLoaded", () => {
   const rulesModal = document.getElementById("rules-modal");
   const switchMode = document.querySelector("#switch-mode");
 
-
   let squares = Array.from(document.querySelectorAll(".grid div"));
   let timerId = null;
   let score = 0;
   let currentPosition = 4;
   let currentRotation = 0;
+  const startSpeed = 0.5;
 
   // Randomly select a Tetromino and its first rotation
   let nextRandoms = [];
@@ -498,13 +498,32 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     }
 
-    score += lines * 100;
-    if (lines === 4) {
-      score += 400;
+    if (switchMode.checked) {
+      score += lines * 100;
+      if (lines === 4) {
+        score += 400;
+      }
+      increaseSpeed();
+    } else {
+      score += lines * 100 * getCurrentSpeed();
+      if (lines === 4) {
+        score += 400 * getCurrentSpeed();
+      }
     }
     scoreDisplay.innerHTML = score;
 
     draw();
+  }
+
+  function increaseSpeed() {
+    if (score <= 20000 && score > 0) {
+      clearInterval(timerId);
+      timerId = setInterval(
+        moveDown,
+        1000 / (startSpeed + (0.25 * Math.floor(score / 2000)))
+      );
+      console.log(startSpeed + 0.25 * Math.floor(score / 2000));
+    }
   }
 
   function initLocalStorage() {
