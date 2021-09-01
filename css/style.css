@@ -53,6 +53,10 @@ body {
   justify-content: flex-start;
 }
 
+.speed-controls .btn:not(:first-child){
+  margin-top: 0;
+}
+
 #controls > * {
   margin-bottom: 5px;
 }
