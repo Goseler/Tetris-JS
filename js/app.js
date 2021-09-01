@@ -119,6 +119,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const rulesModal = document.getElementById("rules-modal");
   const switchMode = document.querySelector("#switch-mode");
 
+
   let squares = Array.from(document.querySelectorAll(".grid div"));
   let timerId = null;
   let score = 0;
