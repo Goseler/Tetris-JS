@@ -117,6 +117,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const rulesModalBtn = document.querySelector("#rules-modal-btn");
   const defaultSpeedBtn = document.querySelector("#default-speed-btn");
   const rulesModal = document.getElementById("rules-modal");
+  const switchMode = document.querySelector('#switch-mode');
 
   let squares = Array.from(document.querySelectorAll(".grid div"));
   let timerId = null;
@@ -155,6 +156,7 @@ document.addEventListener("DOMContentLoaded", () => {
     element.addEventListener("click", changeSpeed);
   });
   muteBtn.addEventListener("click", muteUnmuteMusic);
+  switchMode.addEventListener("change", modeSwitch);
   window.addEventListener(
     "keydown",
     function (e) {
@@ -576,6 +578,14 @@ document.addEventListener("DOMContentLoaded", () => {
       if (speedCtrlBtns[element].checked) {
         return speedCtrlBtns[element].value;
       }
+    }
+  }
+
+  function modeSwitch() {
+    if (switchMode.checked) {
+      
+    } else {
+      
     }
   }
 });
